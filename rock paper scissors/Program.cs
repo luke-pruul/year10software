@@ -29,11 +29,15 @@ namespace rock_paper_scissors
 
         private static bool playagain()
         {
-            Console.WriteL ine("do you want to playagain? y/n");
+            Console.WriteLine("do you want to playagain? y/n");
             string choice = Console.ReadLine().ToLower();
             if(choice =="y" || choice == "yes")
             {
-
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -51,7 +55,7 @@ namespace rock_paper_scissors
 
         private static void givefeedback(string result, string userchoice, string computerchoice)
         {
-            
+            Console.WriteLine($"{result}! you chose {userchoice} and the computer chose {computerchoice}!");
         }
 
         private static string determinewinner(string userchoice, string computerchoice)
@@ -86,7 +90,7 @@ namespace rock_paper_scissors
                     return "lose";
                 }
             }
-            if (userchoice == "scissors")
+            else
             {
                 if (computerchoice == "rock")
                 {
@@ -106,17 +110,47 @@ namespace rock_paper_scissors
 
         private static string computerturn()
         {
-           
+            Random rnd = new Random();
+            int choice = rnd.Next(1, 4);
+            if(choice == 1)
+            {
+                return "rock";
+            }
+            else if (choice == 2)
+            {
+                return "paper";
+            }
+            else
+            {
+                return "scissors";
+            }
         }
 
         private static string userturn()
         {
-            
+            Console.WriteLine("1. rock");
+            Console.WriteLine("2. paper");
+            Console.WriteLine("3. scissors");
+            int choice = int.Parse(Console.ReadLine());
+            if(choice == 1)
+            {
+                return "rock";
+            }
+            else if (choice == 2)
+            {
+                return "paper";
+            }
+            else
+            {
+                return "scissors";
+            }
+
         }
 
         private static void printscore(ref int userscore, ref int computerscore)
         {
-            Console.WriteLine("user score: 100\t\tcomputer score: 100");
+            Console.Clear();
+            Console.WriteLine($"user score: {userscore}\t\tcomputer score: {computerscore}");
         }
     }
 }
