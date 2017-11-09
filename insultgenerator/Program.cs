@@ -10,35 +10,45 @@ namespace insultgenerator
     {
         static void Main(string[] args)
         {
-            string name = Getname;
+            Random rnd = new Random();
 
-            generateinsult(name);
+            string name = Getname();
+
+            generateinsult(name, rnd);
         }
-        private static void generateinsult(string name)
+        private static void generateinsult(string name, Random rnd)
         {
-            Console.WriteLine(name + ", you are " getadjective() + getcompoundadjective() + getobject());
-            menu(name);
+            Console.WriteLine("");
+            Console.WriteLine(name + ", you are " getadjective(rnd) + getcompoundadjective(rnd) + getobject(rnd));
+            menu(name,  rnd);
         }
         private static string Getname()                 
         {
            Console.WriteLine("welcome to the insult generator. what is your name?");
             return Console.ReadLine();
         }    
-        private static void menu(string name)
+        private static void menu(string name , Random rnd)
         {
+            Console.WriteLine("would you like another insult? yes/no");
+            if (Console.ReadLine() == "y")
 
+                generateinsult(name, rnd);
+                
         }
-        private static string getadjective()
+        private static string getadjective(Random rnd)
         {
             string[] adjectives = { "a pussy, a big boi, an idiot , a ugly , a ziggy, a xav" };
+            return adjectives[rnd.next(6)];
         }
-        private static string getcompoundadjective()
+        private static string getcompoundadjective(Random rnd)
         {
             string[] compundadjectives = { "white-girl, mup-daddy, crack-head, scrawny-pleb, vegan-monster" };
+            return compoundAdjectives[rnd.Next(5)];
         }
-        private static string getobject()
+        private static string getobject(Random rnd)
         {
-            string[] objects = {"vegan, hippie, jypsy, goth, maggot, rat"}
+            string[] objects = { "vegan, hippie, gypsy, goth, maggot, rat" };
+            return objects[6];
         }
 
     }
